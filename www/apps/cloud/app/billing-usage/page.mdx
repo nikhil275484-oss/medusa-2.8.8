@@ -1,0 +1,149 @@
+import { InlineIcon } from "docs-ui"
+import { EllipsisHorizontal, ArrowDownTray } from "@medusajs/icons"
+
+export const metadata = {
+  title: `Billing & Usage`,
+}
+
+# {metadata.title}
+
+In this guide, you'll learn how to manage your billing and usage details in Cloud.
+
+## Billing and Usage Overview
+
+After signing up for Cloud, you can view and manage your organization's billing and usage details in the Cloud dashboard.
+
+This is useful if you want to make sure you're not exceeding your usage limits, understand your plan's offerings, and manage your billing details.
+
+---
+
+## Edit Billing Email
+
+To edit the email used for billing:
+
+1. Make sure you're viewing the [correct organization's dashboard in Cloud](../organizations/page.mdx#switch-organization).
+2. Click on the [organization switcher](../organizations/page.mdx#switch-organization) at the top left of the Cloud dashboard.
+3. Choose "Organization Settings" from the dropdown.
+
+![Organization switcher dropdown opened](https://res.cloudinary.com/dza7lstvk/image/upload/v1750238273/Cloud/CleanShot_2025-06-18_at_12.17.33_2x_zcg69z.png)
+
+4. In the Details section of the General settings, change the "Billing email" field.
+5. Once you're done, click the "Save changes" button.
+
+![Billing email field highlighted in the General settings](https://res.cloudinary.com/dza7lstvk/image/upload/v1750238440/Cloud/CleanShot_2025-06-18_at_12.19.41_2x_owgz4a.png)
+
+---
+
+## Manage Payment Method
+
+You can manage the payment methods used for the monthly Cloud payment subscriptions for your organization.
+
+### Add Payment Method to Organization
+
+To add a payment method that can be used for Cloud payments in an organization:
+
+1. Make sure you're viewing the [correct organization's dashboard in Cloud](../organizations/page.mdx#switch-organization).
+2. Click on the [organization switcher](../organizations/page.mdx#switch-organization) at the top left of the Cloud dashboard.
+3. Choose "Organization Settings" from the dropdown.
+4. Change to the "Billing" settings from the sidebar.
+5. In the "Payment methods" section, click the "Add new" button.
+6. This will open a form where you can add credit card details.
+7. Once you're done, click the "Save" button.
+
+### Set Payment Method as Default
+
+When Cloud captures the subscription payment for your organization, it first uses the default payment method in your organization. If payment fails, Cloud tries to use other payment methods in the organization, if available.
+
+When you have multiple payment methods added to your organization, you can change the default payment method.
+
+To change the default payment method:
+
+1. Make sure you're viewing the [correct organization's dashboard in Cloud](../organizations/page.mdx#switch-organization).
+2. Click on the [organization switcher](../organizations/page.mdx#switch-organization) at the top left of the Cloud dashboard.
+3. Choose "Organization Settings" from the dropdown.
+4. Change to the "Billing" settings from the sidebar.
+5. In the "Payment methods" section, find the payment method you want to set as default.
+6. Click the <InlineIcon Icon={EllipsisHorizontal} alt="three-dots" /> icon next to the payment method.
+7. Choose "Set as default" from the dropdown.
+
+The next time Cloud captures the subscription payment for your organization, it will use this payment method first.
+
+---
+
+## Edit Billing Information
+
+Billing information is used in your organization's invoices. You can edit the billing information to make sure the invoices include the correct details.
+
+To edit the billing information:
+
+1. Make sure you're viewing the [correct organization's dashboard in Cloud](../organizations/page.mdx#switch-organization).
+2. Click on the [organization switcher](../organizations/page.mdx#switch-organization) at the top left of the Cloud dashboard.
+3. Choose "Organization Settings" from the dropdown.
+4. Change to the "Billing" settings from the sidebar.
+5. In the "Billing information" section, you can edit the legal name, country, address line, city, and post code.
+6. Once you're done, click the "Save changes" button.
+
+The new billing information will be used in your organization's next invoice.
+
+![Billing information section in the Billing settings](https://res.cloudinary.com/dza7lstvk/image/upload/v1750241643/Cloud/CleanShot_2025-06-18_at_13.13.34_2x_fjpqpu.png)
+
+---
+
+## View Usage
+
+In your organization's settings, you can view your current plan and usage limits.
+
+To view your organization's usage:
+
+1. Make sure you're viewing the [correct organization's dashboard in Cloud](../organizations/page.mdx#switch-organization).
+2. Click on the [organization switcher](../organizations/page.mdx#switch-organization) at the top left of the Cloud dashboard.
+3. Choose "Organization Settings" from the dropdown.
+4. Change to the "Billing" settings from the sidebar.
+
+You'll find two sections at the top of the Billing settings:
+
+- **Current plan**: The plan your organization is currently subscribed to and when the next billing date is.
+- **Usage limits**: A breakdown of your plan and resources usage. You can see the pricing of your plan and any other add-ons, such as additional projects.
+
+![Usage limits sections in the Billing settings](https://res.cloudinary.com/dza7lstvk/image/upload/v1750241792/Cloud/CleanShot_2025-06-18_at_13.16.23_2x_k7eeay.png)
+
+### Change Plan
+
+You set your organization's plan when you sign up for Cloud. However, the plan may not be the best fit for your needs as your business grows.
+
+If you want to change your plan or learn more about your plan's resources and limits, contact support for assistance.
+
+---
+
+## View Billing History and Invoices
+
+You can view your payment history in the organization's settings, and download invoices for each payment.
+
+To view your organization's billing history and invoices:
+
+1. Make sure you're viewing the [correct organization's dashboard in Cloud](../organizations/page.mdx#switch-organization).
+2. Click on the [organization switcher](../organizations/page.mdx#switch-organization) at the top left of the Cloud dashboard.
+3. Choose "Organization Settings" from the dropdown.
+4. Change to the "Invoices" settings from the sidebar.
+
+This will show a table of all the payments made for your organization, including the date, status, and amount of each payment.
+
+![Invoices section in the Invoices settings](https://res.cloudinary.com/dza7lstvk/image/upload/v1750242280/Cloud/CleanShot_2025-06-18_at_13.20.39_2x_gar9lb.png)
+
+### Download Invoice
+
+To download an invoice for a specific payment, click the <InlineIcon Icon={ArrowDownTray} alt="download" /> icon in the same row as the payment you want to download.
+
+This will open the invoice in a new tab, where you can view and download it as a PDF.
+
+![Download invoice icon in the Invoices settings](https://res.cloudinary.com/dza7lstvk/image/upload/v1750242445/Cloud/CleanShot_2025-06-18_at_13.27.05_2x_qqibor.png)
+
+---
+
+## Handle Unsuccessful Payments
+
+If a payment for your organization's subscription fails, you'll receive a [notification](../notifications/page.mdx) in the Cloud dashboard.
+
+The payment may fail for various reasons, such as insufficient funds, an expired card, or other issues with the payment method. Make sure to [update your payment method](#manage-payment-method) if needed.
+
+If there are no issues with your payment method and the payment still fails, contact support for assistance.

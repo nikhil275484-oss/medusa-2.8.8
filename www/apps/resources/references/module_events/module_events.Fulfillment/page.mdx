@@ -1,0 +1,92 @@
+---
+slug: /references/fulfillment/events
+sidebar_label: Events Reference
+generate_toc: true
+---
+
+import { TypeList } from "docs-ui"
+
+# Fulfillment Module Events Reference
+
+This reference shows all the events emitted by the Medusa application related to the Fulfillment Module. If you use the module outside the Medusa application, these events aren't emitted.
+
+## Summary
+
+<Table>
+  <Table.Header>
+    <Table.Row>
+      <Table.HeaderCell>
+Event
+</Table.HeaderCell>
+      <Table.HeaderCell>
+Description
+</Table.HeaderCell>
+    </Table.Row>
+  </Table.Header>
+  <Table.Body>
+    <Table.Row>
+      <Table.Cell>
+[shipment.created](#shipmentcreated)
+</Table.Cell>
+      <Table.Cell>
+Emitted when a shipment is created for an order.
+</Table.Cell>
+    </Table.Row>
+    <Table.Row>
+      <Table.Cell>
+[delivery.created](#deliverycreated)
+</Table.Cell>
+      <Table.Cell>
+Emitted when a fulfillment is marked as delivered.
+</Table.Cell>
+    </Table.Row>
+  </Table.Body>
+</Table>
+
+<EventHeader headerLvl="2" headerProps={{ id: "shipmentcreated", children: (<>shipment.created</>), className: "flex flex-wrap justify-center gap-docs_0.25" }} eventName="shipment.created" payload={`\`\`\`ts
+{
+  id, // the ID of the shipment
+  no_notification, // (boolean) whether to notify the customer
+}
+\`\`\``} />
+
+Emitted when a shipment is created for an order.
+
+### Payload
+
+```ts
+{
+  id, // the ID of the shipment
+  no_notification, // (boolean) whether to notify the customer
+}
+```
+
+### Workflows Emitting this Event
+
+The following workflows emit this event when they're executed. These workflows are executed by Medusa's API routes. You can also view the events emitted by API routes in the [Store](https://docs.medusajs.com/api/store) and [Admin](https://docs.medusajs.com/api/admin) API references.
+
+- [createOrderShipmentWorkflow](/references/medusa-workflows/createOrderShipmentWorkflow)
+
+---
+
+<EventHeader headerLvl="2" headerProps={{ id: "deliverycreated", children: (<>delivery.created</>), className: "flex flex-wrap justify-center gap-docs_0.25" }} eventName="delivery.created" payload={`\`\`\`ts
+{
+  id, // the ID of the fulfillment
+}
+\`\`\``} />
+
+Emitted when a fulfillment is marked as delivered.
+
+### Payload
+
+```ts
+{
+  id, // the ID of the fulfillment
+}
+```
+
+### Workflows Emitting this Event
+
+The following workflows emit this event when they're executed. These workflows are executed by Medusa's API routes. You can also view the events emitted by API routes in the [Store](https://docs.medusajs.com/api/store) and [Admin](https://docs.medusajs.com/api/admin) API references.
+
+- [markOrderFulfillmentAsDeliveredWorkflow](/references/medusa-workflows/markOrderFulfillmentAsDeliveredWorkflow)

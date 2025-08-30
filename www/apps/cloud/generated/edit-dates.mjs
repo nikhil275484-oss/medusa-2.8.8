@@ -1,0 +1,22 @@
+export const generatedEditDates = {
+  "app/page.mdx": "2025-06-25T08:00:52.728Z",
+  "app/organization/page.mdx": "2025-06-12T14:43:20.772Z",
+  "app/projects/page.mdx": "2025-06-25T07:57:21.261Z",
+  "app/environments/page.mdx": "2025-06-25T08:00:05.550Z",
+  "app/deployments/page.mdx": "2025-06-25T07:57:13.059Z",
+  "app/organizations/page.mdx": "2025-06-25T07:13:02.263Z",
+  "app/notifications/page.mdx": "2025-06-25T07:27:37.642Z",
+  "app/database/page.mdx": "2025-06-25T07:54:40.231Z",
+  "app/redis/page.mdx": "2025-06-25T07:57:23.246Z",
+  "app/s3/page.mdx": "2025-06-25T07:57:24.832Z",
+  "app/draft-order-plugin/page.mdx": "2025-06-25T07:57:14.898Z",
+  "app/loyalty-plugin/page.mdx": "2025-06-26T11:11:02.320Z",
+  "app/billing-usage/page.mdx": "2025-07-14T11:09:25.451Z",
+  "app/logs/page.mdx": "2025-06-19T07:44:38.336Z",
+  "app/update-medusa/page.mdx": "2025-06-25T07:57:30.170Z",
+  "app/connect-storefront/page.mdx": "2025-06-25T07:47:00.499Z",
+  "app/environments/environment-variables/page.mdx": "2025-06-25T07:42:53.521Z",
+  "app/environments/long-lived/page.mdx": "2025-07-14T11:01:54.536Z",
+  "app/environments/preview/page.mdx": "2025-06-25T08:00:00.839Z",
+  "app/faq/page.mdx": "2025-07-14T11:44:58.587Z"
+}

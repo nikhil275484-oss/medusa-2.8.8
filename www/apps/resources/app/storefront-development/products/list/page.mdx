@@ -1,0 +1,226 @@
+---
+tags:
+  - product
+  - storefront
+products:
+  - product
+---
+
+import { CodeTabs, CodeTab } from "docs-ui"
+
+export const metadata = {
+  title: `Show Products in Storefront`,
+}
+
+# {metadata.title}
+
+In this guide, you'll learn how to list, paginate, and filter products in your storefront.
+
+## List Products
+
+To retrieve a list products, send a request to the [List Products API route](!api!/store#products_getproducts):
+
+<Note title="Tip">
+
+Learn how to install and configure the JS SDK in the [JS SDK documentation](../../../js-sdk/page.mdx).
+
+</Note>
+
+<CodeTabs group="store-request">
+  <CodeTab label="React" value="react">
+
+export const highlights = [
+  ["17"], ["18"], ["19"], ["20"], ["21"]
+]
+
+  ```tsx highlights={highlights}
+  "use client" // include with Next.js 13+
+
+  import { useEffect, useState } from "react"
+  import { HttpTypes } from "@medusajs/types"
+
+  export default function Products() {
+    const [loading, setLoading] = useState(true)
+    const [products, setProducts] = useState<
+      HttpTypes.StoreProduct[]
+    >([])
+
+    useEffect(() => {
+      if (!loading) {
+        return 
+      }
+
+      sdk.store.product.list()
+      .then(({ products: dataProducts }) => {
+        setProducts(dataProducts)
+        setLoading(false)
+      })
+    }, [loading])
+
+    return (
+      <div>
+        {loading && <span>Loading...</span>}
+        {!loading && products.length === 0 && <span>No products found.</span>}
+        {!loading && products.length > 0 && (
+          <ul>
+            {products.map((product) => (
+              <li key={product.id}>{product.title}</li>
+            ))}
+          </ul>
+        )}
+      </div>
+    )
+  }
+  ```
+
+  </CodeTab>
+  <CodeTab label="JS SDK" value="js-sdk">
+
+  ```ts
+  sdk.store.product.list()
+  .then(({ products: dataProducts }) => {
+    setProducts(dataProducts)
+    setLoading(false)
+  })
+  ```
+
+  </CodeTab>
+</CodeTabs>
+
+The response has a `products` field, which is an array of [products](!api!/store#products_product_schema).
+
+---
+
+## Paginate Products
+
+To paginate products, pass the following query parameters:
+
+- `limit`: The number of products to return in the request.
+- `offset`: The number of products to skip before the returned products. You can calculate this by multiplying the current page with the limit.
+
+The response object returns a `count` field, which is the total count of products. Use it to determine whether there are more products that can be loaded.
+
+For example:
+
+export const paginateHighlights = [
+  ["21", "offset", "Calculate the number of products to skip based on the current page and limit."],
+  ["27", "count", "The total number of products in the Medusa application."],
+  ["38", "setHasMorePages", "Set whether there are more pages based on the total count."],
+  ["55", "button", "Show a button to load more products if there are more pages."]
+]
+
+```tsx highlights={paginateHighlights}
+"use client" // include with Next.js 13+
+
+import { useEffect, useState } from "react"
+import { HttpTypes } from "@medusajs/types"
+import { sdk } from "@/lib/sdk"
+
+export default function Products() {
+  const [loading, setLoading] = useState(true)
+  const [products, setProducts] = useState<
+    HttpTypes.StoreProduct[]
+  >([])
+  const limit = 20
+  const [currentPage, setCurrentPage] = useState(1)
+  const [hasMorePages, setHasMorePages] = useState(false)
+
+  useEffect(() => {
+    if (!loading) {
+      return 
+    }
+
+    const offset = (currentPage - 1) * limit
+
+    sdk.store.product.list({
+      limit,
+      offset,
+    })
+    .then(({ products: dataProducts, count }) => {
+      setProducts((prev) => {
+        if (prev.length > offset) {
+          // products already added because the same request has already been sent
+          return prev
+        }
+        return [
+          ...prev,
+          ...dataProducts,
+        ]
+      })
+      setHasMorePages(count > limit * currentPage)
+      setLoading(false)
+    })
+  }, [loading])
+
+  return (
+    <div>
+      {loading && <span>Loading...</span>}
+      {!loading && products.length === 0 && <span>No products found.</span>}
+      {!loading && products.length > 0 && (
+        <ul>
+          {products.map((product) => (
+            <li key={product.id}>{product.title}</li>
+          ))}
+        </ul>
+      )}
+      {!loading && hasMorePages && (
+        <button 
+          onClick={() => {
+            setCurrentPage((prev) => prev + 1)
+            setLoading(true)
+          }}
+          disabled={loading}
+        >
+          Load More
+        </button>
+      )}
+    </div>
+  )
+}
+```
+
+In the example above, you add a `useEffect` hook that runs whenever the `loading` state changes. This hook fetches the products, passing the `limit` and `offset` parameters to retrieve the paginated products.
+
+You then show a button to load more products if there are more pages.
+
+---
+
+## Filter Products
+
+The List Products API route accepts query parameters to filter products by title, category, handle, and more.
+
+Refer to the [API reference](!api!/store#products_getproducts) for the full list of accepted query parameters.
+
+For example, to filter products by a keyword:
+
+```ts
+sdk.store.product.list({
+  q: "Shirt",
+})
+.then(({ products: dataProducts, count }) => {
+  // TODO set products...
+})
+```
+
+The `q` parameter is used to filter a product's searchable fields, such as its title or description, by a keyword.
+
+The result will be products that match the keyword in their title or description.
+
+---
+
+## Sort Products
+
+To sort products by a field, use the `order` query parameter. Its value is a comma-separated list of fields to sort by, and each field is optionally prefixed by `-` to indicate descending order.
+
+For example, to sort products by title in descending order:
+
+```ts
+sdk.store.product.list({
+  order: "-title",
+})
+.then(({ products: dataProducts, count }) => {
+  // TODO set products...
+})
+```
+
+The result will be products sorted by title in descending order.

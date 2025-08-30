@@ -1,0 +1,119 @@
+export const metadata = {
+  title: `Preview Environments`,
+}
+
+# {metadata.title}
+
+A preview environment is a short-lived environment that is automatically created for each pull request (PR) opened towards a branch with a long-lived environment in Cloud.
+
+Preview environments facilitate testing a PR's changes in a live environment before merging them. They allow you to test changes in an environment that closely resembles the target long-lived environment.
+
+<Note>
+
+Learn more about what environments are and their types in the [Environments](../page.mdx) guide.
+
+</Note>
+
+## Preview (Short-Lived) Environment Infrastructure
+
+Preview environments are designed for testing changes before merging them into production. So, they have a simpler setup compared to [production environments](../long-lived/page.mdx):
+
+- Medusa automatically scales preview environments to zero after ten minutes of inactivity. So, if no one is using the preview environment, it will automatically shut down to save resources.
+- Preview environments run on a single server instance, which is sufficient for testing changes.
+
+### Preview Environment Inactivity
+
+Since Preview environments are only meant for testing, they are put to sleep after ten minutes of inactivity.
+
+So, if you're testing scheduled jobs or events, they may not work as expected in preview environments. They will work as expected in long-lived environments, such as Staging or Production.
+
+---
+
+## View Preview Environments
+
+To view the preview environments for a project, go to the [project's dashboard](../../projects/page.mdx#open-project-dashboard). You'll see a "Previews" card with all the preview environments for the project.
+
+![Project dashboard with the Previews card highlighted](https://res.cloudinary.com/dza7lstvk/image/upload/v1750081308/Cloud/CleanShot_2025-06-16_at_16.41.30_2x_ocwoqf.png)
+
+---
+
+## Create Preview Environment
+
+To create a new preview environment, create a PR towards a branch that has a long-lived environment in Cloud, such as Production.
+
+Medusa will automatically create a preview environment for the PR and deploy the changes to that environment. Everytime you push a new commit to the PR, Medusa will redeploy the preview environment with the latest changes.
+
+You can also view the preview deployment and its status in the comment made on your PR in GitHub.
+
+![Preview environment deployment comment in GitHub PR](https://res.cloudinary.com/dza7lstvk/image/upload/v1749817407/Cloud/CleanShot_2025-06-13_at_15.23.10_2x_rbjorr.png)
+
+---
+
+## Access Deployed Preview Environment
+
+Once the preview environment has finished deploying, you can access its Medusa Admin either through the comment in the PR or by clicking the "Preview" button in the [project's dashboard](../../projects/page.mdx#open-project-dashboard).
+
+![Preview button in the project's dashboard](https://res.cloudinary.com/dza7lstvk/image/upload/v1750158423/Cloud/CleanShot_2025-06-17_at_14.06.41_2x_yaw699.png)
+
+This will open the preview environment's Medusa Admin in a new tab, where you can test the changes made in the PR.
+
+To log into the Medusa Admin of the preview environment, use the admin credentials of the Production environment. If you [configured the shared previews settings](#manage-shared-previews-settings) to use a different environment's database, you can log in with the admin credentials of that environment instead.
+
+You can also [send requests to the preview deployment's API](../../deployments/page.mdx#send-requests-to-the-deployment).
+
+---
+
+## Open Preview Environment Dashboard
+
+Similar to long-lived environments, you can open a preview environment's dashboard to view its details, logs, and edit its settings.
+
+To open a preview environment's dashboard:
+
+1. Go to its [project's dashboard](../../projects/page.mdx#open-project-dashboard).
+2. In the "Previews" card, click on the preview environment you want to view.
+
+Then, you can manage the preview environment just like any other long-lived environment, as mentioned throughout this guide. You can [manage its environment variables](../environment-variables/page.mdx) and [import/export its database dump](../../database/page.mdx).
+
+![Preview environment dashboard](https://res.cloudinary.com/dza7lstvk/image/upload/v1749817815/Cloud/CleanShot_2025-06-13_at_15.29.58_2x_h9vn34.png)
+
+---
+
+## Manage Shared Previews Settings
+
+While you can manage each preview environment's settings individually, you can also manage shared settings between all preview environments in the project. By using the shared settings, you don't need to replicate the same settings for each preview environment.
+
+For example, you can define environment variables that are common to all preview environments.
+
+To manage the shared settings for preview environments:
+
+1. In a [project's dashboard](../../projects/page.mdx#open-project-dashboard), click on the "Settings" tab.
+2. Choose the "Previews" tab from the sidebar.
+3. In the Previews settings, you can:
+    - Manage environment variables, as explained in the [Manage Environment Variables](../environment-variables/page.mdx) guide. All preview environments created after making changes will inherit these variables.
+    - Specify which database to create the preview environment's database from. By default, a new database will be created from the Production environment's database. You can change this to use a different environment's database, such as Staging.
+
+<Note>
+
+Making changes to the shared settings will affect all preview environments created after the changes. Existing preview environments will not be affected by the changes.
+
+</Note>
+
+![Previews settings in the project's settings tab](https://res.cloudinary.com/dza7lstvk/image/upload/v1749818069/Cloud/CleanShot_2025-06-13_at_15.34.15_2x_zdh3ha.png)
+
+---
+
+## Preview Environment's Database
+
+Each preview environment has its own resources, including its own database, separate from the production environment.
+
+By default, the preview environment's database will be replicated from the Production environment's database. This means you can test changes in the preview environment with the same data in production, without actually affecting the production database.
+
+You can change the environment from which the preview environment's database is replicated in the [shared Previews settings](#manage-shared-previews-settings).
+
+---
+
+## Delete Preview Environment
+
+Preview environments are automatically deleted when their PR is merged or closed. However, you can also delete them manually if needed.
+
+To delete a preview environment, you can follow the same steps in the [Long-Lived Environment](../long-lived/page.mdx) section.

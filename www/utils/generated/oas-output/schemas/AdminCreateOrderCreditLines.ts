@@ -1,0 +1,31 @@
+/**
+ * @schema AdminCreateOrderCreditLines
+ * type: object
+ * description: The details of a credit line to add to an order.
+ * x-schemaName: AdminCreateOrderCreditLines
+ * required:
+ *   - amount
+ *   - reference
+ *   - reference_id
+ * properties:
+ *   amount:
+ *     type: number
+ *     title: amount
+ *     description: The amount of the credit line.
+ *     example: 100
+ *   reference:
+ *     type: string
+ *     title: reference
+ *     description: The name of the table that the credit line is referencing.
+ *     example: order
+ *   reference_id:
+ *     type: string
+ *     title: reference_id
+ *     description: The ID of a record in the table that the credit line is referencing.
+ *     example: order_123
+ *   metadata:
+ *     type: object
+ *     description: The credit line's metadata, can hold custom key-value pairs.
+ * 
+*/
+

@@ -1,0 +1,130 @@
+import { 
+  InlineIcon,
+  Tabs,
+  TabsContent,
+  TabsContentWrapper,
+  TabsList,
+  TabsTrigger,
+  Button,
+  Link
+} from "docs-ui"
+import { AiAssistent, AiAssistentLuminosity } from "@medusajs/icons"
+
+export const metadata = {
+  title: `${pageNumber} Build with AI Assistants and LLMs`,
+}
+
+# {metadata.title}
+
+In this chapter, you'll learn how you can use AI assistants and LLMs effectively in your Medusa development.
+
+## AI Assistant in Documentation
+
+The Medusa documentation is equipped with an AI Assistant that can answer your questions and help you build customizations with Medusa.
+
+### Open the AI Assistant
+
+To open the AI Assistant, either:
+
+- Use the keyboard shortcut `Ctrl + I` for Windows/Linux, or `Cmd + I` for macOS.
+- Click the <InlineIcon Icon={AiAssistent} alt="AI Assistant" /> icon in the top right corner of the documentation.
+
+You can then ask the AI Assistant any questions about Medusa, such as:
+
+- What is a workflow?
+- How to create a product review module?
+- How to update Medusa?
+- How to fix this error?
+
+The AI Assistant will provide you with relevant documentation links, code snippets, and explanations to help you with your development.
+
+### Ask About Code Snippets
+
+While browsing the documentation, you'll find a <InlineIcon Icon={AiAssistentLuminosity} alt="AI Assistant" /> icon in the header of code snippets. You can click this icon to ask the AI Assistant about the code snippet.
+
+The AI Assistant will analyze the code and provide explanations, usage examples, and any additional information you need to understand how the code works.
+
+### Ask About Documentation Pages
+
+If you need more help understanding a specific documentation page, you can click the "Explain with AI Assistant" link in the page's right sidebar. This will open the AI Assistant and provide context about the current page, allowing you to ask questions related to the content.
+
+### Formatting and Code Blocks
+
+In your questions to the AI Assistant, you can format code blocks by wrapping them in triple backticks (```). For example:
+
+~~~markdown
+```
+console.log("Hello, World!")
+```
+~~~
+
+You can add new lines using the `Shift + Enter` shortcut.
+
+---
+
+## MCP Remote Server
+
+The Medusa documentation provides a remote Model Context Protocol (MCP) server that allows you to find information from the Medusa documentation right in your IDEs or AI tools, such as Cursor.
+
+Medusa hosts a Streamable HTTP MCP server available at `https://docs.medusajs.com/mcp`. you can add it to AI agents that support connecting to MCP servers.
+
+<Tabs defaultValue="cursor">
+  <TabsList>
+    <TabsTrigger value="cursor">Cursor</TabsTrigger>
+    <TabsTrigger value="vscode">VSCode</TabsTrigger>
+  </TabsList>
+  <TabsContentWrapper className="mt-1">
+    <TabsContent value="cursor">
+
+      <Link href="https://cursor.com/install-mcp?name=medusa&config=eyJ1cmwiOiJodHRwczovL2RvY3MubWVkdXNhanMuY29tL21jcCJ9" target="_blank" rel="noopener noreferrer" variant="content">Click here</Link> to add the Medusa MCP server to Cursor.
+
+      To manually connect to the Medusa MCP server in Cursor, add the following to your `.cursor/mcp.json` file or Cursor settings, as explained in the [Cursor documentation](https://docs.cursor.com/context/model-context-protocol):
+
+```json
+{
+  "mcpServers": {
+    "medusa": {
+      "url": "https://docs.medusajs.com/mcp"
+    }
+  }
+}
+```
+
+      
+    </TabsContent>
+    <TabsContent value="vscode">
+
+      <Link href="https://vscode.dev/redirect/mcp/install?name=medusa&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fdocs.medusajs.com%2Fmcp%22%7D" target="_blank" rel="noopener noreferrer" variant="content">Click here</Link> to add the Medusa MCP server to VSCode.
+
+      To manually connect to the Medusa MCP server in VSCode, add the following to your `.vscode/mcp.json` file in your workspace:
+
+```json
+{
+  "servers": {
+    "medusa": {
+      "type": "http",
+      "url": "https://docs.medusajs.com/mcp"
+    }
+  }
+}
+```
+
+      Learn more in the [VSCode documentation](https://code.visualstudio.com/docs/copilot/chat/mcp-servers).
+
+    </TabsContent>
+  </TabsContentWrapper>
+</Tabs>
+
+---
+
+## Plain Text Documentation
+
+The Medusa documentation is available in plain text format, which allows LLMs and AI tools to easily parse and understand the content.
+
+You can access the following plain text documentation files:
+
+- [llms.txt](https://docs.medusajs.com/llms.txt) - Contains a short structure of links to important documentation pages.
+- [llms-full.txt](https://docs.medusajs.com/llms-full.txt) - Contains the full documentation content, including all pages and sections.
+- **Markdown version of any page** - You can access the Markdown version of any documentation page by appending `/index.html.md` to the page URL. For example, the plain text content of the current page is available at [https://docs.medusajs.com/learn/introduction/build-with-llms-ai/index.html.md](https://docs.medusajs.com/learn/introduction/build-with-llms-ai/index.html.md).
+
+You can provide these files to your AI tools or LLM editors like [Cursor](https://docs.cursor.com/context/@-symbols/@-docs). This will help them understand the Medusa documentation and provide better assistance when building customizations or answering questions.
